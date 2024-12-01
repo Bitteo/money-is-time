@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Money is Time - Set Hourly Income</title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            width: 300px;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2,
+        h3 {
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type='number'],
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+            border: solid 1px;
+            border-color: #ccc;
+            background-color: transparent;
+            border-radius: 0.5rem;
+            outline: none;
+        }
+
+        input[type='number']:focus, select:focus {
+            border-color: #267751;
+            background-color: #F4F8F6;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #267751;
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .message.success {
+            color: #267751;
+        }
+
+        .message.error {
+            color: red;
+        }
+
+        .calculated-income {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .divider {
+            height: 1px;
+            width: 100%;
+            background-color: #ccc;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkboxContainer {
+            display: flex;
+        }
+
+        input[type="checkbox"] {
+            margin: 0 0.5rem 0 0;
+            height: 16px;
+            width: 16px;
+            accent-color: #267751;
+        }
+
+        #extensionToggleLabel {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="title">Set Your Hourly Income</h2>
+
+    <!-- Income Type -->
+    <label for="incomeType" id="incomeTypeLabel">Income Type:</label>
+    <select id="incomeType">
+        <option value="hourly">Hourly</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="annual">Annual</option>
+    </select>
+
+    <!-- Hourly Income -->
+    <div id="hourlyIncomeDiv">
+        <label for="hourlyIncome" id="hourlyIncomeLabel">Hourly Income ($):</label>
+        <input type="number" id="hourlyIncome" placeholder="E.g., 15.50" step="0.01" min="0" />
+    </div>
+
+    <!-- Weekly, Monthly, or Annual Income -->
+    <div id="otherIncomeDiv" style="display: none;">
+        <label for="otherIncome" id="otherIncomeLabel">Income ($):</label>
+        <input type="number" id="otherIncome" placeholder="Enter your income" step="0.01" min="0" />
+
+        <label for="workingHours" id="workingHoursLabel">Weekly Working Hours:</label>
+        <input type="number" id="workingHours" placeholder="Weekly working hours (e.g., 40)" step="1" min="1" />
+    </div>
+
+    <!-- Display of Calculated Hourly Income -->
+    <div id="calculatedIncomeDiv" class="calculated-income" style="display: none;">
+        <span id="calculatedIncomeLabel">Calculated Hourly Income:</span>
+        <span id="calculatedIncome"></span> $/h
+    </div>
+
+    <button id="saveBtn" disabled>Save</button>
+    <div class="message" id="message"></div>
+
+    <div class="divider"></div>
+
+    <h3 id="settingsTitle">Settings</h3>
+
+    <!-- Language Selector -->
+    <label for="language" id="languageLabel">Select Language:</label>
+    <select id="language">
+        <option value="en">English</option>
+        <option value="it">Italiano</option>
+        <!-- Add more languages if necessary -->
+    </select>
+
+    <!-- Currency Selector -->
+    <label for="currency" id="currencyLabel">Select Currency:</label>
+    <select id="currency">
+        <option value="EUR">Euro (€)</option>
+        <option value="USD">US Dollar ($)</option>
+        <option value="GBP">British Pound (£)</option>
+        <option value="JPY">Japanese Yen (¥)</option>
+        <!-- Add more currencies if necessary -->
+    </select>
+    <div class="checkboxContainer">
+        <input type="checkbox" id="extensionToggle" />
+        <label for="extensionToggle" id="extensionToggleLabel">Enable Extension:</label>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
